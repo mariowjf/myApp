@@ -29,24 +29,21 @@
         <h1 class="title">Ionic Blank Starter</h1>
         <button class="icon ion-gear-a button button-clear"></button>
       </ion-header-bar>
+      <!--
+      <div class="tabs-striped tabs-background-positive">
+        <div class="tabs tabs-icon-top">
+          <a class="tab-item"><i class="icon ion-home"></i>Home</a>
+          <a class="tab-item"><i class="icon ion-person"></i>About us</a>
+          <a class="tab-item"><i class="icon ion-calendar"></i>Calendar</a>
+        </div>
+      </div>-->
       
-      <ion-content class="padding has-subheader">
-        <p>You can open a different folder in the file tree on the left using File > Open Folder. Brackets considers this folder your "project": it acts as the scope for various search operations, and some settings are tied to the folder you have open. You can easily switch back to previous projects by clicking on root folder name in the file tree. You can also drag a folder from the OS onto the Brackets window to open it in the file tree, and drag files onto the Brackets window.</p>
-        
-        <p><button class="icon ion-ionic button button-positive"> ionic</button></p>
-        
-        <button class="button button-block">Hello</button>
-        
-          <div class="button-bar">
-            <button class="icon icon-left ion-social-twitter button button-positive">twitter</button>
-            <button class="icon icon-left ion-social-facebook button button-positive">facebook</button>
-            <button class="icon icon-left ion-social-youtube button button-positive">youtube</button>
-          </div>
-      </ion-content>
+<ion-tabs class="tabs-icon-top tabs-positive">
+  <ion-tab icon="ion-home" title="Home"></ion-tab>
+  <ion-tab icon="ion-person" title="About" badge="1" badge-style="badge-assertive"></ion-tab>
+  <ion-tab icon="ion-calendar" title="Calendar"></ion-tab>
+</ion-tabs>
       
-      <ion-footer-bar class="bar-positive">
-        <h1 class="title">Footer</h1>
-      </ion-footer-bar>
     </ion-pane>
   </body>
 </html>
