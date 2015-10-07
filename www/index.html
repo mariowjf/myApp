@@ -37,8 +37,6 @@
           <a class="tab-item"><i class="icon ion-calendar"></i>Calendar</a>
         </div>
       </div>-->
-
-      
       
       <ion-tabs class="tabs-icon-top tabs-positive">
         <ion-tab icon="ion-home" title="Home"></ion-tab>
@@ -48,17 +46,22 @@
       
       <ion-content>
 
-        <div class="list list-inset">
-          <div class="item item-divider">Header</div>
-          <div class="item item-image item-body">
-            <img src="http://placehold.it/600x200" alt="Item Img" />
-            <p>The Ionic Framework command line utility makes it easy to start, build, run, and emulate Ionic apps. In addition, it comes with (optional!) easy integration.</p>
+        <div class="list">
+          <label class="item item-input">
+            <span class="input-label">First Name</span>
+            <input type="text" placeholder="Your First Name" />
+          </label>
+          <label class="item item-input">
+            <span class="input-label">Last Name</span>
+            <input type="text" placeholder="Your Last Name" />
+          </label>
+          <div class="item item-input-inset">
+            <label class="item-input-wrapper">
+              <input type="text" placeholder="Address" />
+            </label>
+            <button class="button button-small button-positive">Search</button>
           </div>
-          <div class="item item-icon-left item-text-wrap">
-            <i class="icon ion-home"></i>
-            The Ionic Framework command line utility makes it easy to start, build, run, and emulate Ionic apps. In addition, it comes with (optional!) easy integration.
-          </div>
-          <div class="item item-divider">Footer</div>
+        
         </div>
         
       </ion-content>
