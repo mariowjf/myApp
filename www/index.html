@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <title></title>
+
+    <link href="lib/ionic/css/ionic.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+
+    <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
+    <link href="css/ionic.app.css" rel="stylesheet">
+    -->
+
+    <!-- ionic/angularjs js -->
+    <script src="lib/ionic/js/ionic.bundle.js"></script>
+
+    <!-- cordova script (this will be a 404 during development) -->
+    <script src="cordova.js"></script>
+
+    <!-- your app's js -->
+    <script src="js/app.js"></script>
+  </head>
+  <body ng-app="starter">
+
+    <ion-pane>
+      <ion-header-bar class="bar-positive">
+        <button class="icon ion-navicon button button-clear"></button>
+        <h1 class="title">Ionic Blank Starter</h1>
+        <button class="icon ion-gear-a button button-clear"></button>
+      </ion-header-bar>
+      
+      <ion-content class="padding has-subheader">
+        <p>You can open a different folder in the file tree on the left using File > Open Folder. Brackets considers this folder your "project": it acts as the scope for various search operations, and some settings are tied to the folder you have open. You can easily switch back to previous projects by clicking on root folder name in the file tree. You can also drag a folder from the OS onto the Brackets window to open it in the file tree, and drag files onto the Brackets window.</p>
+        
+        <p><button class="icon ion-ionic button button-positive"> ionic</button></p>
+        
+        <button class="button button-block">Hello</button>
+        
+          <div class="button-bar">
+            <button class="icon icon-left ion-social-twitter button button-positive">twitter</button>
+            <button class="icon icon-left ion-social-facebook button button-positive">facebook</button>
+            <button class="icon icon-left ion-social-youtube button button-positive">youtube</button>
+          </div>
+      </ion-content>
+      
+      <ion-footer-bar class="bar-positive">
+        <h1 class="title">Footer</h1>
+      </ion-footer-bar>
+    </ion-pane>
+  </body>
+</html>
