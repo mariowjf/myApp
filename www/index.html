@@ -24,67 +24,29 @@
   <body ng-app="starter">
 
     <ion-pane>
-      <ion-header-bar class="bar-positive">
-        <button class="icon ion-navicon button button-clear"></button>
-        <h1 class="title">Ionic Blank Starter</h1>
-        <button class="icon ion-gear-a button button-clear"></button>
+    
+      <ion-header-bar class="bar-dark">
+        <h2 class="title">Artist List</h2>
       </ion-header-bar>
-      <!--
-      <div class="tabs-striped tabs-background-positive">
-        <div class="tabs tabs-icon-top">
-          <a class="tab-item"><i class="icon ion-home"></i>Home</a>
-          <a class="tab-item"><i class="icon ion-person"></i>About us</a>
-          <a class="tab-item"><i class="icon ion-calendar"></i>Calendar</a>
-        </div>
-      </div>-->
+      <div class="bar bar-subheader item-input-inset bar-light">
+        <label class="item-input-wrapper">
+          <i class="icon ion-search placeholder-icon"></i>
+          <input type="search" placeholder="Search">
+        </label>
+      </div>
       
-      <ion-tabs class="tabs-icon-top tabs-positive">
-        <ion-tab icon="ion-home" title="Home"></ion-tab>
-        <ion-tab icon="ion-person" title="About" badge="1" badge-style="badge-assertive"></ion-tab>
-        <ion-tab icon="ion-calendar" title="Calendar"></ion-tab>
-      </ion-tabs>
-      
-      <ion-content>
-
-        <div class="list list-inset">
-          <label class="item item-input">
-            <span class="input-label">First Name</span>
-            <input type="text" placeholder="Your First Name" />
-          </label>
-          <label class="item item-input">
-            <textarea placeholder="Comments"></textarea>
-          </label>
-
-          <div class="item item-toggle">
-            <span class="input-label">Awesomeness</span>
-            <label class="toggle">
-              <input type="checkbox" />
-              <div class="track">
-                <div class="handle"></div>
-              </div>
-            </label>
-          </div>
-
-          <div class="item range range-royal">
-            <span class="input-label">Feeling</span>
-            <i class="icon ion-sad"></i>
-            <input type="range" name="feeling" min="0" max="100" value="50" >
-            <i class="icon ion-happy-outline"></i>
-          </div>
-
-          <label class="item item-input item-select">
-            <span class="input-label">Favorite Pet</span>
-            <select>
-              <option>Dogs</option>
-              <option>Cats</option>
-              <option>Fishes</option>
-            </select>
-          </label>
-
-        </div>
-        
+      <ion-content class="has-subheader" ng-controller="ListController">
+        <ion-list ng-repeat="item in artists">
+          <ion-item class="item-thumbnail-left item-text-wrap">
+            <img src="img/{{item.shortname}}_tn.jpg" alt="{{ item.name }} Photo">
+            <h2>{{item.name}}</h2>
+            <h3>{{item.reknown}}</h3>
+            <p>{{item.bio}}</p>
+          </ion-item>
+        </ion-list>
       </ion-content>
       
     </ion-pane>
+    
   </body>
 </html>
