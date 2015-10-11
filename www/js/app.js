@@ -34,5 +34,12 @@ angular.module('starter', ['ionic'])
       $scope.artists.splice(fromIndex, 1);
       $scope.artists.splice(toIndex, 0, item);
     }
+    
+    $scope.doRefresh = function() {
+      $http.get('js/data.json').success(function(data) {
+        $scope.artists = data.artists;
+        $scope.$broadcast('scroll.refreshComplete');
+      });
+    }
   });
 }]);
