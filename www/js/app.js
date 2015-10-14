@@ -45,12 +45,24 @@ angular.module('starter', ['ionic'])
       }
     })
   
+    .state('tabs.detail', {
+      url: '/list/:aId',
+      views: {
+        'list-tab' : {
+          templateUrl: 'templates/detail.html',
+          controller: 'ListController'
+        }
+      }
+    })
+  
   $urlRouterProvider.otherwise('/tab/home');
 })
 
-.controller('ListController', ['$scope', '$http', function($scope, $http){
+.controller('ListController', ['$scope', '$http', '$state', 
+            function($scope, $http, $state){
   $http.get('js/data.json').success(function(data) {
     $scope.artists = data.artists;
+    $scope.whichArtist = $state.params.aId;
     
     $scope.onItemDelete = function(item) {
       $scope.artists.splice($scope.artists.indexOf(item), 1);
