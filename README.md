@@ -908,7 +908,7 @@ URL|Parameters|Method
 + Response
 
   - On success: 202 (application/json)
-
+    
         {
         }
   
@@ -940,7 +940,7 @@ URL|Parameters|Method
 + Response
 
   - On success: 202 (application/json)
-
+    
         {
         }
   
@@ -1122,7 +1122,7 @@ URL|Parameters|Method
         }
   
     or when the MMS API fails to save data to DB.
-
+ 
         {
           "error": "DB error message"
-        }
+        } 
