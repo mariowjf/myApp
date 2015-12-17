@@ -31,9 +31,13 @@ Dictator API is a *lightweight cloud resource management* service similar to its
   * [Remove an Instance Snapshot](#35-remove-an-instance-snapshot)
   * [Revert an Instance Snapshot](#36-revert-an-instance-snapshot)
 * [Instance Guest Operation APIs](#4-instance-guest-operation-apis)
-  * [Check file existence on instance](#41-check-file-existence-on-instance)
-  * [Copy file to instance](#42-copy-file-to-instance)
-  * [Run program on instance](#43-run-program-on-instance)
+  * [List all tasks of an instance](#41-list-all-tasks-of-an-instance)
+  * [Retrieve a specified instance task](#42-retrieve-a-specified-instance-task)
+  * [Update instance task status](#43-update-instance-task-status)
+  * [Remove an instance task](#44-remove-an-instance-task)
+  * [Check file existence on instance](#45-check-file-existence-on-instance)
+  * [Copy file to instance](#46-copy-file-to-instance)
+  * [Run program on instance](#47-run-program-on-instance)
 
 ## 1 Image APIs
 
@@ -797,9 +801,164 @@ URL|Parameters|Method
 
 
 
-## 4 Instance Guest Operation APIs
+## 4 Instance Task APIs
 
-### 4.1 Check file existence on instance
+### 4.1 List all tasks of an instance
+URL|Parameters|Method
+-----|-----|-----
+/instances/{instanceid}/tasks|instanceid (required, number, 12345)|GET
+
++ Response
+
+  - On success: 200 (application/json)
+
+          [
+            {
+              "id": 1,
+              "instance_id": 1,
+              "request_id": 1,
+              "status": "completed",
+              "messagge: "",
+              "created": "2014-12-10T18:25:43.511Z"
+            },
+            {
+              "id": 2,
+              "instance_id": 1,
+              "request_id": 2,
+              "status": "error",
+              "messagge: "error message...",
+              "created": "2014-12-10T18:25:43.511Z"
+            },
+            {
+              "id": 3,
+              "instance_id": 1,
+              "request_id": 3,
+              "status": "running",
+              "messagge: "",
+              "created": "2014-12-10T18:25:43.511Z"
+            }
+          ]
+          
+    Attribute|Value Type|Description
+    -----|-----|-----|-----
+    id|integer|instance task id
+    instance_id|integer|the owner instance's id
+    request_id|integer|the corresponding request's id
+    status|string|task status, in the range of ["running", "completed", "error"]
+    message|string|if the status attribute is "error", saves the error message
+    created|datetime|the time when the instance task is created
+  
+  - On failure: 400 (application/json)
+    
+    when the instance doesn't exist
+    
+        {
+          "error": "Instance not exist"
+        }
+
+### 4.2 Retrieve a specified instance task
+URL|Parameters|Method
+-----|-----|-----
+/instances/{instanceid}/tasks/{id}|instanceid (required, number, 12345); id (required, number, 23456)|GET
+
++ Response
+
+  - On success: 200 (application/json)
+  
+        {
+          "id": 3,
+          "instance_id": 1,
+          "request_id": 3,
+          "status": "running",
+          "messagge: "",
+          "created": "2014-12-10T18:25:43.511Z"
+        }
+  
+  - On failure: 400 (application/json)
+    
+    when the instance doesn't exist
+    
+        {
+          "error": "Instance not exist"
+        }
+    
+    when the instance task doesn't exist
+    
+        {
+          "error": "Instance task not exist"
+        }
+    
+### 4.3 Update instance task status
+URL|Parameters|Method
+-----|-----|-----
+/instances/{instanceid}/tasks/{id}|instanceid (required, number, 12345); id (required, number, 23456)|PUT
+
++ Request (application/json)
+
+    {
+        "status": "new status",
+        "message": "error message"
+    }
+        
+    Attribute|Value Type|Required|Description
+    -----|-----|-----|-----
+    status|string|yes|new status in the range ["running", "completed", "error"]
+    message|string|yes|detailed error message when the status is "error"
+    
++ Response
+
+  - On success: 202 (application/json)
+
+        {
+        }
+  
+  - On failure: 400 (application/json)
+    
+    when the instance doesn't exist
+    
+        {
+          "error": "Instance not exist"
+        }
+    
+    when the instance task doesn't exist
+    
+        {
+          "error": "Instance task not exist"
+        }
+    
+    when the new task status is invalid
+    
+        {
+          "error": "Invalid instance task status 'failed', it should be one of 'running', 'completed' and 'error'"
+        }
+        
+### 4.4 Remove an instance task
+URL|Parameters|Method
+-----|-----|-----
+/instances/{instanceid}/tasks/{id}|instanceid (required, number, 12345); id (required, number, 23456)|DELETE
+    
++ Response
+
+  - On success: 202 (application/json)
+
+        {
+        }
+  
+  - On failure: 400 (application/json)
+    
+    when the instance doesn't exist
+    
+        {
+          "error": "Instance not exist"
+        }
+    
+    when the instance task doesn't exist
+    
+        {
+          "error": "Instance task not exist"
+        }
+    
+### 4.5 Check file existence on instance
 URL|Parameters|Method
 -----|-----|-----
 /instances/{instanceid}/file_exist|instanceid (required, number, 12345)|POST
@@ -823,8 +982,12 @@ URL|Parameters|Method
   - On success: 202 (application/json)
 
           {
-            "fileExist": true|false
+            "fileExist": true
           }
+          
+    Attribute|Value Type|Description
+    -----|-----|-----|-----
+    fileExist|boolean|true if the file exists; false if the file doesn't exist
 
   - On failure: 400 (application/json)
   
@@ -846,7 +1009,7 @@ URL|Parameters|Method
           "error": "Vapor error message"
         }
 
-### 4.2 Copy file to instance
+### 4.6 Copy file to instance
 URL|Parameters|Method
 -----|-----|-----
 /instances/instanceid/tasks/copy_file|instanceid (required, number, 12345)|POST
@@ -872,7 +1035,12 @@ URL|Parameters|Method
   - On success: 202 (application/json)
 
           {
+            "id": 123
           }
+          
+    Attribute|Value Type|Description
+    -----|-----|-----|-----
+    id|integer|the new instance task's id
 
   - On failure: 400 (application/json)
   
@@ -900,7 +1068,7 @@ URL|Parameters|Method
           "error": "DB error message"
         }
 
-### 4.3 Run program on instance
+### 4.7 Run program on instance
 URL|Parameters|Method
 -----|-----|-----
 /instances/instanceid/tasks/run_program|instanceid (required, number, 12345)|POST
@@ -926,7 +1094,12 @@ URL|Parameters|Method
   - On success: 202 (application/json)
 
           {
+            "id": 123
           }
+          
+    Attribute|Value Type|Description
+    -----|-----|-----|-----
+    id|integer|the new instance task's id
 
   - On failure: 400 (application/json)
   
