@@ -864,15 +864,15 @@ URL|Parameters|Method
 + Response
 
   - On success: 200 (application/json)
-  
-        {
-          "id": 3,
-          "instance_id": 1,
-          "request_id": 3,
-          "status": "running",
-          "messagge: "",
-          "created": "2014-12-10T18:25:43.511Z"
-        }
+
+          {
+            "id": 3,
+            "instance_id": 1,
+            "request_id": 3,
+            "status": "running",
+            "messagge: "",
+            "created": "2014-12-10T18:25:43.511Z"
+          }
   
   - On failure: 400 (application/json)
     
