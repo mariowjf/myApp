@@ -1122,7 +1122,7 @@ URL|Parameters|Method
         }
   
     or when the MMS API fails to save data to DB.
- 
+
         {
           "error": "DB error message"
-        } 
+        }
