@@ -895,10 +895,10 @@ URL|Parameters|Method
 
 + Request (application/json)
 
-    {
-        "status": "new status",
-        "message": "error message"
-    }
+        {
+          "status": "new status",
+          "message": "error message"
+        }
         
     Attribute|Value Type|Required|Description
     -----|-----|-----|-----
